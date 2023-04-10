@@ -4,6 +4,10 @@ import { observer } from "mobx-react";
 import blackjackStore from "./stores/GameStore";
 import { GameState } from "./types";
 import StartingPage from "./components/StartingPage/StartingPage";
+import BettingOptions from "./components/BettingOptions/BettingOptions";
+import Header from "./components/Header/Header";
+import GameTable from "./components/GameTable/GameTable";
+import ActionButtons from "./components/ActionButtons/ActionButtons";
 
 function App() {
   useEffect(() => {
@@ -12,19 +16,19 @@ function App() {
 
   const deck = blackjackStore.getDeck;
   const gameState = blackjackStore.gameState;
+  console.log("GAME STATE", gameState);
 
   return (
     <div className="main-container">
       {gameState !== GameState.Idle ? (
         <>
-          <div className="header-container">
-            <h1>Header</h1>
-          </div>
+          <Header/>
           <div className="content-container">
-            <div className="game-div"></div>
+            <GameTable/>
+            <BettingOptions/>
           </div>
           <div className="action-container">
-            <button>Action</button>
+            <ActionButtons/>
           </div>
         </>
       ) : (
