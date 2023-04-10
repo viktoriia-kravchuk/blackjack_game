@@ -21,3 +21,9 @@ export enum GameState {
   Blackjack = "blackjack",
   End = "end",
 }
+
+export interface BettingTokenProps {
+  children: React.ReactNode;
+  color: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined; 
+}

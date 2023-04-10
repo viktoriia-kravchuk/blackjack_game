@@ -9,9 +9,10 @@ class BlackjackStore {
   playerTotal = 0;
   dealerTotal = 0;
   betAmount = 0;
+  numberOfDecks: number = 2;
   gameState: GameState = GameState.Idle;
 
-constructor() {
+  constructor() {
     makeObservable(this, {
       deck: observable,
       playerHand: observable,
@@ -20,6 +21,7 @@ constructor() {
       dealerTotal: observable,
       betAmount: observable,
       gameState: observable,
+      numberOfDecks: observable,
       shuffleDeck: action,
       dealCards: action,
       calculateTotal: action,
@@ -34,17 +36,26 @@ constructor() {
     this.gameState = newState;
   }
 
+  setNumberOfDecks(number: number): void {
+    if (number < 1 || number > 8) {
+      throw new Error("Number of decks must be between 1 and 8.");
+    }
+    this.numberOfDecks = number;
+  }
+
   // method to shuffle the deck of cards
   shuffleDeck() {
     const deck: Card[] = [];
-    for (let i = 0; i < suits.length; i++) {
-      for (let j = 0; j < ranks.length; j++) {
-        const card: Card = {
-          suit: suits[i],
-          rank: ranks[j].name,
-          value: ranks[j].value,
-        };
-        deck.push(card);
+    for (let i = 0; i < this.numberOfDecks; i++) {
+      for (let i = 0; i < suits.length; i++) {
+        for (let j = 0; j < ranks.length; j++) {
+          const card: Card = {
+            suit: suits[i],
+            rank: ranks[j].name,
+            value: ranks[j].value,
+          };
+          deck.push(card);
+        }
       }
     }
     // shuffle the deck using Fisher-Yates algorithm
@@ -74,18 +85,16 @@ constructor() {
           this.playerTotal += card.value;
         }
       }
+      // Deal two cards to the dealer
+      for (let i = 0; i < 2; i++) {
+        const card = this.deck.pop();
+        if (card) {
+          this.dealerHand.push(card);
+          this.dealerTotal += card.value;
+        }
+      }
       this.gameState = GameState.Playing;
     }
-
-    // Deal two cards to the dealer
-    for (let i = 0; i < 2; i++) {
-      const card = this.deck.pop();
-      if (card) {
-        this.dealerHand.push(card);
-        this.dealerTotal += card.value;
-      }
-    }
-    this.gameState = GameState.Playing;
   }
 
   // method to calculate the total value of a hand
@@ -114,11 +123,10 @@ constructor() {
     if (this.gameState !== GameState.Playing) {
       return;
     }
-
     const card = this.deck.pop();
     if (card) {
       this.playerHand.push(card);
-      this.playerTotal += card.value;
+      this.playerTotal = this.calculateTotal(this.playerHand);
     }
     if (this.playerTotal > 21) {
       this.gameState = GameState.Lose;
@@ -135,7 +143,7 @@ constructor() {
       const card = this.deck.pop();
       if (card) {
         this.dealerHand.push(card);
-        this.dealerTotal += card.value;
+        this.dealerTotal = this.calculateTotal(this.dealerHand);
       }
     }
     // Determine winner
@@ -155,9 +163,6 @@ constructor() {
     if (this.gameState === GameState.Betting) {
       if (amount <= 0) {
         throw new Error("Bet amount must be greater than 0.");
-      }
-      if (amount > this.betAmount) {
-        throw new Error("Insufficient balance to place bet.");
       }
       this.betAmount = amount;
       this.gameState = GameState.Dealing;
