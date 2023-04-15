@@ -1,0 +1,101 @@
+$card-images: (
+    "2C": url("../../assets/images/2C.png"),
+    "2D": url("../../assets/images/2D.png"),
+    "2S": url("../../assets/images/2S.png"),
+    "2H": url("../../assets/images/2H.png"),
+    "3C": url("../../assets/images/3C.png"),
+    "3D": url("../../assets/images/3D.png"),
+    "3S": url("../../assets/images/3S.png"),
+    "3H": url("../../assets/images/3H.png"),
+    "4C": url("../../assets/images/4C.png"),
+    "4D": url("../../assets/images/4D.png"),
+    "4S": url("../../assets/images/4S.png"),
+    "4H": url("../../assets/images/4H.png"),
+    "5C": url("../../assets/images/5C.png"),
+    "5D": url("../../assets/images/5D.png"),
+    "5S": url("../../assets/images/5S.png"),
+    "5H": url("../../assets/images/5H.png"),
+    "6C": url("../../assets/images/6C.png"),
+    "6D": url("../../assets/images/6D.png"),
+    "6S": url("../../assets/images/6S.png"),
+    "6H": url("../../assets/images/6H.png"),
+    "7C": url("../../assets/images/7C.png"),
+    "7D": url("../../assets/images/7D.png"),
+    "7S": url("../../assets/images/7S.png"),
+    "7H": url("../../assets/images/7H.png"),
+    "8C": url("../../assets/images/8C.png"),
+    "8D": url("../../assets/images/8D.png"),
+    "8S": url("../../assets/images/8S.png"),
+    "8H": url("../../assets/images/8H.png"),
+    "9S": url("../../assets/images/9S.png"),
+    "9H": url("../../assets/images/9H.png"),
+    "9C": url("../../assets/images/9C.png"),
+    "9D": url("../../assets/images/9D.png"),
+    "10S": url("../../assets/images/10S.png"),
+    "10H": url("../../assets/images/10H.png"),
+    "10C": url("../../assets/images/10C.png"),
+    "10D": url("../../assets/images/10D.png"),
+    "KINGS": url("../../assets/images/KINGS.png"),
+    "KINGH": url("../../assets/images/KINGH.png"),
+    "KINGC": url("../../assets/images/KINGC.png"),
+    "KINGD": url("../../assets/images/KINGD.png"),
+    "QUEENS": url("../../assets/images/QUEENS.png"),
+    "QUEENH": url("../../assets/images/QUEENH.png"),
+    "QUEENC": url("../../assets/images/QUEENC.png"),
+    "QUEEND": url("../../assets/images/QUEEND.png"),
+    "JACKS": url("../../assets/images/JACKS.png"),
+    "JACKH": url("../../assets/images/JACKH.png"),
+    "JACKC": url("../../assets/images/JACKC.png"),
+    "JACKD": url("../../assets/images/JACKD.png"),
+    "ACES": url("../../assets/images/ACES.png"),
+    "ACEH": url("../../assets/images/ACEH.png"),
+    "ACEC": url("../../assets/images/ACEC.png"),
+    "ACED": url("../../assets/images/ACED.png"),
+    "card-back": url("../../assets/images/card-back.png"),
+);
+
+@mixin set-background-image($image-url) {
+    background-image: $image-url;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    height: 100%;
+}
+
+@each $key,
+$value in $card-images {
+    $class-name: unquote(".card-#{$key}");
+
+    #{$class-name} {
+        @include set-background-image($value);
+    }
+}
+
+.game-card {
+    width: 70px;
+    height: 105px;
+    border-radius: 0.7rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+    .game-card {
+        width: 90px;
+        height: 130px;
+    }
+}
+
+@media (min-width: 966px) {
+    .game-card {
+        width: 140px;
+        height: 210px;
+    }
+}

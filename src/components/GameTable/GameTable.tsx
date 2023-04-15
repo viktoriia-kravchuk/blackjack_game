@@ -3,45 +3,40 @@ import { useEffect } from "react";
 import blackjackStore from "../../stores/GameStore";
 import { GameState } from "../../types";
 import CardImage from "./CardImage";
-import "./GameTable.css";
+import styles from "./GameTable.module.css";
 
 const GameTable = () => {
   const playersHand = blackjackStore.playerHand;
   const dealersHand = blackjackStore.dealerHand;
   const gameState = blackjackStore.gameState;
 
-  useEffect(() => {}, []);
 
   return (
-    <div className="game-div">
-      <div className="cards-container">
-        <div className="cards-container-inner">
+    <div className={styles["game-div"]}>
+      <div className={styles["cards-container"]}>
+        <div className={styles["cards-container-inner"]}>
           {playersHand.map((card) => {
-            const filename = `${(card.rank + card.suit[0]).toUpperCase()}.png`;
+            const filename = `${(card.rank + card.suit[0]).toUpperCase()}`;
             return (
               <div key={filename}>
                 <CardImage
                   fileName={filename}
-                  alt={filename}
-                  className="game-card"
                 />
               </div>
             );
           })}
         </div>
-        <div className="cards-container-inner">
+        <div className={styles["cards-container-inner"]}>
           {dealersHand.map((card, i) => {
             const filename =
               gameState === GameState.Playing && i === 1
-                ? "card-back.png"
-                : `${(card.rank + card.suit[0]).toUpperCase()}.png`;
+                ? "card-back"
+                : `${(card.rank + card.suit[0]).toUpperCase()}`;
 
             return (
               <div key={filename}>
                 <CardImage
                   fileName={filename}
-                  alt={filename}
-                  className="game-card"
                 />
               </div>
             );
