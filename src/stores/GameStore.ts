@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from "mobx";
+import { makeObservable, observable, action, reaction } from "mobx";
 import { suits, ranks } from "../consts/deckConstants";
 import { Card, GameState, numberOfDecks } from "../types";
 
@@ -30,6 +30,22 @@ class BlackjackStore {
       placeBet: action,
       resetGame: action,
     });
+
+    // reaction to update playerTotal based on changes in playerHand
+    reaction(
+      () => this.playerHand.length,
+      () => {
+        this.playerTotal = this.calculateTotal(this.playerHand);
+      }
+    );
+
+    // reaction to update dealerTotal based on changes in dealerHand
+    reaction(
+      () => this.dealerHand.length,
+      () => {
+        this.dealerTotal = this.calculateTotal(this.dealerHand);
+      }
+    );
   }
 
   setGameState(newState: GameState): void {
@@ -79,7 +95,6 @@ class BlackjackStore {
         const card = this.deck.pop();
         if (card) {
           this.playerHand.push(card);
-          this.playerTotal += card.value;
         }
       }
       // Deal two cards to the dealer
@@ -87,7 +102,6 @@ class BlackjackStore {
         const card = this.deck.pop();
         if (card) {
           this.dealerHand.push(card);
-          this.dealerTotal += card.value;
         }
       }
       this.gameState = GameState.Playing;
@@ -123,7 +137,6 @@ class BlackjackStore {
     const card = this.deck.pop();
     if (card) {
       this.playerHand.push(card);
-      this.playerTotal = this.calculateTotal(this.playerHand);
     }
     if (this.playerTotal > 21) {
       this.gameState = GameState.Lose;
@@ -140,7 +153,6 @@ class BlackjackStore {
       const card = this.deck.pop();
       if (card) {
         this.dealerHand.push(card);
-        this.dealerTotal = this.calculateTotal(this.dealerHand);
       }
     }
     // Determine winner
