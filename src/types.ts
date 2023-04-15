@@ -19,7 +19,7 @@ export enum GameState {
   Lose = "lose",
   Draw = "draw",
   Blackjack = "blackjack",
-  End = "end",
+  // End = "end",
 }
 
 export interface BettingTokenProps {
@@ -27,3 +27,5 @@ export interface BettingTokenProps {
   color: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined; 
 }
+
+export type numberOfDecks = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;

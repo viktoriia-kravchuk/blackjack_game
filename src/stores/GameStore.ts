@@ -1,6 +1,6 @@
 import { makeObservable, observable, action } from "mobx";
 import { suits, ranks } from "../consts/deckConstants";
-import { Card, GameState } from "../types";
+import { Card, GameState, numberOfDecks } from "../types";
 
 class BlackjackStore {
   deck: Card[] = [];
@@ -9,7 +9,7 @@ class BlackjackStore {
   playerTotal = 0;
   dealerTotal = 0;
   betAmount = 0;
-  numberOfDecks: number = 2;
+  numberOfDecks: numberOfDecks = 2;
   gameState: GameState = GameState.Idle;
 
   constructor() {
@@ -36,10 +36,7 @@ class BlackjackStore {
     this.gameState = newState;
   }
 
-  setNumberOfDecks(number: number): void {
-    if (number < 1 || number > 8) {
-      throw new Error("Number of decks must be between 1 and 8.");
-    }
+  setNumberOfDecks(number: numberOfDecks): void {
     this.numberOfDecks = number;
   }
 
