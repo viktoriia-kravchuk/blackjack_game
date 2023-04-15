@@ -4,10 +4,12 @@ import blackjackStore from "../../stores/GameStore"
 const ActionButtons = () => {
 
     const handleHit = () => {
+        console.log("HIT");
         blackjackStore.hit();
     }
 
     const handleStand = () => {
+        console.log("STAND");
         blackjackStore.stand();
     }
 
