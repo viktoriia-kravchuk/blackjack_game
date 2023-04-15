@@ -11,6 +11,8 @@ class BlackjackStore {
   betAmount = 0;
   numberOfDecks: numberOfDecks = 2;
   gameState: GameState = GameState.Idle;
+  playerHasBlackjack:boolean = false;
+  dealerHasBlackjack: boolean = false;
 
   constructor() {
     makeObservable(this, {
@@ -22,11 +24,14 @@ class BlackjackStore {
       betAmount: observable,
       gameState: observable,
       numberOfDecks: observable,
+      playerHasBlackjack: observable,
+      dealerHasBlackjack: observable,
       shuffleDeck: action,
       dealCards: action,
       calculateTotal: action,
       hit: action,
       stand: action,
+      checkForBlackjack: action,
       placeBet: action,
       resetGame: action,
     });
@@ -36,6 +41,7 @@ class BlackjackStore {
       () => this.playerHand.length,
       () => {
         this.playerTotal = this.calculateTotal(this.playerHand);
+        this.playerHasBlackjack = this.checkForBlackjack(this.playerHand);
       }
     );
 
@@ -44,6 +50,7 @@ class BlackjackStore {
       () => this.dealerHand.length,
       () => {
         this.dealerTotal = this.calculateTotal(this.dealerHand);
+        this.dealerHasBlackjack = this.checkForBlackjack(this.dealerHand);
       }
     );
   }
@@ -167,6 +174,16 @@ class BlackjackStore {
     }
   }
 
+  // method to check for blackjack (total of 21 with only 2 cards) in a hand
+  checkForBlackjack(hand: Card[]): boolean {
+    const total = this.calculateTotal(hand);
+    const isBlackjack = total === 21 && hand.length === 2;
+    if(isBlackjack){
+      this.gameState = GameState.Blackjack;
+    }
+    return isBlackjack;
+  }
+
   // method to place a bet
   placeBet(amount: number) {
     if (this.gameState === GameState.Betting) {
@@ -186,6 +203,8 @@ class BlackjackStore {
     this.dealerTotal = 0;
     this.betAmount = 0;
     this.gameState = GameState.Idle;
+    this.dealerHasBlackjack = false;
+    this.playerHasBlackjack = false;
   }
 }
 
