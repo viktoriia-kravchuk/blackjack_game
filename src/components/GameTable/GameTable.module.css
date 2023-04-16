@@ -1,7 +1,6 @@
 .game-div {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   justify-content: space-around;
   align-items: center;
   background-image: radial-gradient(circle at bottom, #23b958, #178d40, #05350e);

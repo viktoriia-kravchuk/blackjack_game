@@ -3,8 +3,12 @@ import Token from "./Token";
 import blackjackStore from "../../stores/GameStore";
 
 import { colors, betAmount } from "../../consts/deckConstants";
+import { GameState } from "../../types";
 
 const BettingOptions = () => {
+
+  const bettingActive = blackjackStore.gameState===GameState.Betting;
+
   const handleBet =
     (betAmount: number) => (event: React.MouseEvent<HTMLButtonElement>) => {
       blackjackStore.placeBet(betAmount);
@@ -18,6 +22,7 @@ const BettingOptions = () => {
           <Token
             children={bet}
             key={i}
+            active = {bet===blackjackStore.betAmount}
             color={colors[i]}
             onClick={handleBet(bet)}
           />

@@ -25,6 +25,7 @@ export interface BettingTokenProps {
   children: React.ReactNode;
   color: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined; 
+  active: boolean;
 }
 
 export type numberOfDecks = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
