@@ -1,7 +1,8 @@
 .game-div {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
+  justify-content: space-around;
   align-items: center;
   background-image: radial-gradient(circle at bottom, #23b958, #178d40, #05350e);
   width: 100%;
@@ -20,6 +21,23 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap; }
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%; }
+
+.score-box {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-align: center;
+  text-shadow: #178d40 -1px -1px;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); }
 
 @media (max-width: 767px) {
   .cards-container-inner {

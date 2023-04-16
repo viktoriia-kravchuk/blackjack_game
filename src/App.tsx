@@ -26,6 +26,7 @@ function App() {
           <div className="content-container">
             <GameTable />
             <div className="action-container">
+              {/* <Scores> */}
               <ActionButtons />
             </div>
           </div>
