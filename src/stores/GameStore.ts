@@ -150,24 +150,28 @@ class BlackjackStore {
     }
   }
 
+  get computedDealerTotal(): number {
+    return this.calculateTotal(this.dealerHand);
+  }
+
   // method for the dealer to reveal their second card, hit until their hand value is 17 or higher, and determine the winner
   stand() {
     if (this.gameState !== GameState.Playing) {
       return;
     }
     // Dealer hits until hand value is 17 or higher
-    while (this.dealerTotal < 17) {
+    while (this.computedDealerTotal  < 17) {
       const card = this.deck.pop();
       if (card) {
         this.dealerHand.push(card);
       }
     }
     // Determine winner
-    if (this.dealerTotal > 21) {
+    if (this.computedDealerTotal  > 21) {
       this.gameState = GameState.Win; // dealer bust, player wins
-    } else if (this.playerTotal > this.dealerTotal) {
+    } else if (this.playerTotal > this.computedDealerTotal ) {
       this.gameState = GameState.Win; // player has higher hand value, player wins
-    } else if (this.dealerTotal > this.playerTotal) {
+    } else if (this.computedDealerTotal  > this.playerTotal) {
       this.gameState = GameState.Lose; // dealer has higher hand value, player loses
     } else {
       this.gameState = GameState.Draw; // hand values are tied, it's a draw

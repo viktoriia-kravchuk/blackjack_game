@@ -22,13 +22,12 @@ function App() {
     <div className="main-container">
       {gameState !== GameState.Idle ? (
         <>
-          <Header/>
+          <Header />
           <div className="content-container">
-            <GameTable/>
-            <BettingOptions/>
-          </div>
-          <div className="action-container">
-            <ActionButtons/>
+            <GameTable />
+            <div className="action-container">
+              <ActionButtons />
+            </div>
           </div>
         </>
       ) : (
