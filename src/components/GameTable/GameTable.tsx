@@ -14,9 +14,9 @@ const GameTable = () => {
   return (
     <div className={styles["game-div"]}>
       <div className={styles["info-container"]}>
-      <div className={styles["score-box"]}>PLAYER TOTAL: {blackjackStore.playerTotal}</div>
+      <div className={styles["score-box"]}>Player: {blackjackStore.playerTotal}</div>
         <BettingOptions />
-        <div className={styles["score-box"]}>DEALER TOTAL: {blackjackStore.dealerTotal}</div>
+        <div className={styles["score-box"]}>Dealer: {blackjackStore.dealerTotal}</div>
       </div>
 
       <div className={styles["cards-container"]}>

@@ -1,69 +1,59 @@
 .token {
-    cursor: pointer;
-    border: none;
-    outline: none;
-    height: 4rem;
-    font-style: normal;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    transition: transform 0.1s, filter 0.1s;
-    padding: 0.35rem;
-    aspect-ratio: 1/1;
-    box-shadow: black 0 0.2rem 0.4rem;
-    margin-left: 10px;
-}
+  cursor: pointer;
+  border: none;
+  outline: none;
+  height: 4rem;
+  font-style: normal;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  transition: transform 0.1s, filter 0.1s;
+  padding: 0.35rem;
+  aspect-ratio: 1/1;
+  box-shadow: black 0 0.2rem 0.4rem;
+  margin-left: 10px; }
+
+.active {
+  box-shadow: #fbeb73 0 0 0.4rem 0.3rem; }
+
+.disabled {
+  cursor: not-allowed; }
 
 .text {
-    border-radius: 50%;
-    background: rgb(255, 255, 255);
-    box-shadow: inset 0 0 0.2rem black;
-    width: 100%;
-    height: 100%;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 900;
-    text-shadow: 0 0 0.3rem black;
-    user-select: none;
-}
+  border-radius: 50%;
+  background: white;
+  box-shadow: inset 0 0 0.2rem black;
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  text-shadow: 0 0 0.3rem black;
+  user-select: none; }
 
 .token:hover {
-    filter: brightness(90%);
-}
+  filter: brightness(90%); }
 
 .token:active {
-    transform: scale(0.97);
-}
+  transform: scale(0.97); }
 
 .red {
-    background: radial-gradient(ellipse farthest-corner at right bottom, #ff0000 0%, #cc0000 8%, #990000 30%, #800000 40%, transparent 80%),
-        radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFACAC 8%, #D46464 25%, #5d1f1f 62.5%, #5d1f1f 100%);
-}
+  background: radial-gradient(ellipse farthest-corner at right bottom, #ff0000 0%, #cc0000 8%, #990000 30%, #800000 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFACAC 8%, #D46464 25%, #5d1f1f 62.5%, #5d1f1f 100%); }
 
 .blue {
-    background: radial-gradient(ellipse farthest-corner at right bottom, #83daf3 0%, #3cb8c8 8%, #3f7cbe 30%, #24619a 40%, transparent 80%),
-        radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #83daf3 8%, #3cb8c8 25%, #1f375d 62.5%, #1f495d 100%);
-}
+  background: radial-gradient(ellipse farthest-corner at right bottom, #83daf3 0%, #3cb8c8 8%, #3f7cbe 30%, #24619a 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #83daf3 8%, #3cb8c8 25%, #1f375d 62.5%, #1f495d 100%); }
 
 .green {
-    background: radial-gradient(ellipse farthest-corner at right bottom, #00ff00 0%, #00cc00 8%, #009900 30%, #008000 40%, transparent 80%),
-        radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #ACFFAC 8%, #64D464 25%, #1f5d1f 62.5%, #1f5d1f 100%);
-}
+  background: radial-gradient(ellipse farthest-corner at right bottom, #00ff00 0%, #00cc00 8%, #009900 30%, #008000 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #ACFFAC 8%, #64D464 25%, #1f5d1f 62.5%, #1f5d1f 100%); }
 
 .pink {
-    background: radial-gradient(ellipse farthest-corner at right bottom, #FFB6C1 0%, #fa95a6 8%, #fc6fba 30%, #FF1493 40%, transparent 80%),
-        radial-gradient(ellipse farthest-corner at left top, #fbaebb 0%, #fa87c2 8%, #f87e92 25%, #FF1493 62.5%, #FF1493 100%);
-}
+  background: radial-gradient(ellipse farthest-corner at right bottom, #FFB6C1 0%, #fa95a6 8%, #fc6fba 30%, #FF1493 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #fbaebb 0%, #fa87c2 8%, #f87e92 25%, #FF1493 62.5%, #FF1493 100%); }
 
 .grey {
-    background: radial-gradient(ellipse farthest-corner at right bottom, #e8e8e8 0%, #c4c4c4 8%, #b4b4b4 30%, #a1a1a1 40%, transparent 80%),
-        radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #e8e8e8 8%, #c4c4c4 25%, #636363 62.5%, #7a7a7a 100%);
-}
+  background: radial-gradient(ellipse farthest-corner at right bottom, #e8e8e8 0%, #c4c4c4 8%, #b4b4b4 30%, #a1a1a1 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #e8e8e8 8%, #c4c4c4 25%, #636363 62.5%, #7a7a7a 100%); }
 
 .yellow {
-    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
-        radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-}
+  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%); }
