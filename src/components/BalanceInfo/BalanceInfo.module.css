@@ -1,0 +1,26 @@
+ .balance-wrapper {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     padding: 1rem 2rem;
+     gap: 1rem;
+ }
+
+ .balance {
+     background: linear-gradient(to top, #ffd477 22%, #ffc86a 24%, #f2bf51 26%, #edc369 27%, #f7e09b 40%, #c2932f 78%, #8a6821 95% );
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     color: #fff;
+     position: relative;
+     text-transform: uppercase;
+     font-size: 1.8rem;
+     margin: 0;
+     font-weight: 500;
+
+}
+
+@media (max-width: 767px) {
+    .balance {
+         font-size: 1.5rem;
+    }
+}
