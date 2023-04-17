@@ -8,6 +8,7 @@ import BettingOptions from "./components/BettingOptions/BettingOptions";
 import Header from "./components/Header/Header";
 import GameTable from "./components/GameTable/GameTable";
 import ActionButtons from "./components/ActionButtons/ActionButtons";
+import BalanceInfo from "./components/BalanceInfo/BalanceInfo";
 
 function App() {
   useEffect(() => {
@@ -22,12 +23,12 @@ function App() {
     <div className="main-container">
       {gameState !== GameState.Idle ? (
         <>
-          <Header />
+          {/* <Header /> */}
           <div className="content-container">
             <GameTable />
             <div className="action-container">
-              {/* <Scores> */}
               <ActionButtons />
+              <BalanceInfo/>
             </div>
           </div>
         </>

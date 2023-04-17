@@ -9,9 +9,10 @@ class BlackjackStore {
   playerTotal = 0;
   dealerTotal = 0;
   betAmount = 0;
+  playerBalance: number = 2000;
   numberOfDecks: numberOfDecks = 2;
   gameState: GameState = GameState.Idle;
-  playerHasBlackjack:boolean = false;
+  playerHasBlackjack: boolean = false;
   dealerHasBlackjack: boolean = false;
 
   constructor() {
@@ -22,6 +23,7 @@ class BlackjackStore {
       playerTotal: observable,
       dealerTotal: observable,
       betAmount: observable,
+      playerBalance: observable,
       gameState: observable,
       numberOfDecks: observable,
       playerHasBlackjack: observable,
@@ -53,6 +55,12 @@ class BlackjackStore {
         this.dealerHasBlackjack = this.checkForBlackjack(this.dealerHand);
       }
     );
+
+    reaction(
+      () => this.gameState,
+      (newGameState) => {
+        this.updatePlayerBalance(newGameState);
+      })
   }
 
   setGameState(newState: GameState): void {
@@ -160,18 +168,18 @@ class BlackjackStore {
       return;
     }
     // Dealer hits until hand value is 17 or higher
-    while (this.computedDealerTotal  < 17) {
+    while (this.computedDealerTotal < 17) {
       const card = this.deck.pop();
       if (card) {
         this.dealerHand.push(card);
       }
     }
     // Determine winner
-    if (this.computedDealerTotal  > 21) {
+    if (this.computedDealerTotal > 21) {
       this.gameState = GameState.Win; // dealer bust, player wins
-    } else if (this.playerTotal > this.computedDealerTotal ) {
+    } else if (this.playerTotal > this.computedDealerTotal) {
       this.gameState = GameState.Win; // player has higher hand value, player wins
-    } else if (this.computedDealerTotal  > this.playerTotal) {
+    } else if (this.computedDealerTotal > this.playerTotal) {
       this.gameState = GameState.Lose; // dealer has higher hand value, player loses
     } else {
       this.gameState = GameState.Draw; // hand values are tied, it's a draw
@@ -182,17 +190,28 @@ class BlackjackStore {
   checkForBlackjack(hand: Card[]): boolean {
     const total = this.calculateTotal(hand);
     const isBlackjack = total === 21 && hand.length === 2;
-    if(isBlackjack){
+    if (isBlackjack) {
       this.gameState = GameState.Blackjack;
     }
     return isBlackjack;
   }
 
+  updatePlayerBalance(gameOutcome: GameState): void {
+    if (gameOutcome === GameState.Win) {
+      this.playerBalance += this.betAmount;
+    } else if (gameOutcome === GameState.Lose) {
+      this.playerBalance -= this.betAmount;
+    } else if (gameOutcome === GameState.Blackjack) {
+      this.playerBalance += this.betAmount * 1.5;
+    }
+    return;
+  }
+
   // method to place a bet
   placeBet(amount: number) {
     if (this.gameState === GameState.Betting) {
-      if (amount <= 0) {
-        throw new Error("Bet amount must be greater than 0.");
+      if (amount <= 0 || amount > this.playerBalance) {
+        throw new Error("Insufficient balance.");
       }
       this.betAmount = amount;
       this.gameState = GameState.Dealing;
