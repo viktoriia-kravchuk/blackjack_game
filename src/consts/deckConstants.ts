@@ -19,4 +19,4 @@ export const ranks: Rank[] = [
 export const suits: string[] = ["hearts", "diamonds", "clubs", "spades"];
 
 export const betAmount: number[] = [5, 25, 100, 500, 1000, 2000];
-export const colors: string[] = ["red", "green", "blue", "pink", "yellow", "grey"];
+export const colors: string[] = ["red", "green", "blue", "pink", "violet", "grey"];

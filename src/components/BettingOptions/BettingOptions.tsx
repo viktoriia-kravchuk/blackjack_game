@@ -1,30 +1,41 @@
 import { observer } from "mobx-react";
 import Token from "./Token";
 import blackjackStore from "../../stores/GameStore";
-
 import { colors, betAmount } from "../../consts/deckConstants";
-import { GameState } from "../../types";
+import { useState } from "react";
 
 const BettingOptions = () => {
+  const [animationTokenIndex, setAnimationTokenIndex] = useState(-1);
 
-  const bettingActive = blackjackStore.gameState===GameState.Betting;
+  function isTokenDisabled(betAmount: number): boolean {
+    return betAmount + blackjackStore.betAmount > blackjackStore.playerBalance;
+  }
 
-  const handleBet =
-    (betAmount: number) => (event: React.MouseEvent<HTMLButtonElement>) => {
-      blackjackStore.placeBet(betAmount);
-      blackjackStore.dealCards();
+  const addBet =
+    (bet: number, index: number) =>
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      const newBetAmount = blackjackStore.betAmount + bet;
+      if (newBetAmount <= 0 || newBetAmount > blackjackStore.playerBalance) {
+      } else {
+        blackjackStore.placeBet(bet);
+        setAnimationTokenIndex(index);
+      }
     };
 
   return (
     <div className="bet-div">
       {betAmount.map((bet, i) => {
+        const shouldAnimate = animationTokenIndex === i;
         return (
           <Token
             children={bet}
             key={i}
-            active = {bet===blackjackStore.betAmount}
+            active={bet === blackjackStore.betAmount}
             color={colors[i]}
-            onClick={handleBet(bet)}
+            onClick={addBet(bet, i)}
+            disabled={isTokenDisabled(bet)}
+            addClass={shouldAnimate? "dissolveInTop" : ""}
+            onTransitionEnd={() => setAnimationTokenIndex(-1)}
           />
         );
       })}

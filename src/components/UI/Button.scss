@@ -9,38 +9,39 @@
     }
 }
 
-$btn-padding: 0.8rem 1.2rem;
+$btn-large-padding: 0.7rem 1.1rem;
+$btn-small-padding: 0.4rem 0.6rem;
 $btn-border-radius: 0.5rem;
 $btn-transition-time: 64ms;
 
 $btn-type: (
     "blue": ("color": #ffffff,
-        "background-color": #0091ea,
+        "background-color": rgb(24, 80, 137)
     ),
     "green": ("color": #ffffff,
         "background-color": #01662b,
     ),
-    "yellow": ("color": #3e2723,
-        "background-color": #ffc400,
+    "yellow": ("color": #ffffff,
+        "background-color": rgb(167, 122, 19),
     ),
     "red": ("color": #ffffff,
-        "background-color": #d50000,
+        "background-color": #981313,
     ),
-    "black": ("color": #ffffff,
-        "background-color": #303030,
+    "black": ("color": #000000,
+        "background-color": rgb(179, 197, 214),
     ),
 );
 
 .btn {
     --color: #000000;
-    --background-color: #d8d8d8;
     --border-color: darken(#d8d8d8, 7.5%);
     color: var(--color);
     font-family: inherit;
-    background-color: var(--background-color);
-    padding: $btn-padding;
-    font-size: 1.1rem;
-    border: solid 1px var(--border-color);
+    
+    padding: $btn-large-padding;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: solid 2px var(--border-color);
     outline: none;
     position: relative;
     border-radius: $btn-border-radius;
@@ -49,23 +50,12 @@ $btn-type: (
         0 0.2rem 0.4rem rgba(0, 0, 0, 0.4),
         0 -0.3rem 0.6rem rgba(0, 0, 0, 0.2) inset;
     transition: box-shadow $btn-transition-time ease-out;
-
-    &:after {
-        content: "";
-        background-color: #ffffff;
-        width: 75%;
-        height: 12.5%;
-        position: absolute;
-        top: 0.15rem;
-        left: 12.5%;
-        border-radius: 50%;
-        filter: blur(0.15rem);
-        transition: opacity $btn-transition-time ease-out;
-    }
+    cursor: pointer;
 
     &:hover{
         transform: scale(1.05);
         transition: transform 0.5s ease-in-out;
+        background-color: var(--background-color);
     }
 
     &:active {
@@ -77,8 +67,17 @@ $btn-type: (
             opacity: 0;
         }
     }
-}
 
+    @media only screen and (max-width: 768px) {
+        font-size: 1.2rem;
+        padding: $btn-small-padding;
+    }
+
+    @media only screen and (max-width: 480px) {
+        font-size: 1rem;
+        padding: $btn-small-padding;
+    }
+}
 .btn:disabled {
     --color: #000000;
     --background-color: #d8d8d8;
@@ -96,14 +95,13 @@ $styles in $btn-type {
             --#{$style}: #{$value};
 
             @if ($style =="background-color") {
-                --border-color: #{darken($value, 7.5%)};
+                --border-color: #{$value};
+                background-color: #{lighten($value, 10%)};
+                
             }
 
-            &:active {
-                @if ($style =="color") {
-                    --#{$style}: #{darken($value, 7.5%)};
-                }
-            }
         }
     }
 }
+
+
