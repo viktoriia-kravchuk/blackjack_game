@@ -10,7 +10,7 @@ const BalanceInfo = () => {
           Balance: {blackjackStore.playerBalance} $
         </div>
         <div className={styles["balance"]}>
-          Bid: {blackjackStore.betAmount} $
+          Bet: {blackjackStore.betAmount} $
         </div>
       </div>
     </>

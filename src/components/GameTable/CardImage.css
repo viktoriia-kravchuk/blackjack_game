@@ -427,19 +427,53 @@
   height: 105px;
   border-radius: 0.7rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
-  position: relative;
+  margin-left: -3rem;
   cursor: pointer;
-  transition: transform 0.5s ease-in-out; }
+  animation-delay: 4s;
+  -webkit-animation-delay: 4s;
+  -webkit-animation: fadeInTop 2.5s, flip 2.5s 2.5s;
+  animation: fadeInTop 2.5s, flip 2.5s 2.5s;
+  transition: 0.4s; }
+
+.game-card:not(:first-child) {
+  margin-left: -5rem; }
+
+.card-card-back {
+  animation: fadeInTop 2.5s !important; }
+
+@keyframes fadeInTop {
+  from {
+    background-image: url("../../assets/images/card-back.png");
+    opacity: 0;
+    transform: translateY(-100%); }
+  to {
+    background-image: url("../../assets/images/card-back.png");
+    opacity: 1;
+    transform: translateY(0); } }
+
+@-webkit-keyframes flip {
+  from {
+    transform: rotateY(-90deg); }
+  to {
+    transform: rotateY(0deg); } }
+
+@keyframes flip {
+  from {
+    transform: rotateY(-90deg); }
+  to {
+    transform: rotateY(0deg); } }
 
 .game-card:hover {
-  transform: scale(1.05); }
+  transform: translateY(-1rem); }
 
 @media (min-width: 768px) {
   .game-card {
     width: 90px;
-    height: 130px; } }
+    height: 130px;
+    margin-left: -4rem; } }
 
 @media (min-width: 966px) {
   .game-card {
     width: 140px;
-    height: 210px; } }
+    height: 210px;
+    margin-left: -5rem; } }

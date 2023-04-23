@@ -8,17 +8,21 @@
   text-decoration: none;
   border-radius: 50%;
   font-size: 1.1rem;
-  transition: transform 0.1s, filter 0.1s;
+  transition: all 0.5s ease-in;
   padding: 0.35rem;
   aspect-ratio: 1/1;
   box-shadow: black 0 0.2rem 0.4rem;
   margin-left: 10px; }
 
+@media (max-width: 768px) {
+  .token {
+    height: 3rem;
+    font-size: 0.9rem;
+    padding: 0.25rem;
+    margin-left: 5px; } }
+
 .active {
   box-shadow: #fbeb73 0 0 0.4rem 0.3rem; }
-
-.disabled {
-  cursor: not-allowed; }
 
 .text {
   border-radius: 50%;
@@ -40,6 +44,32 @@
 .token:active {
   transform: scale(0.97); }
 
+.token:disabled {
+  opacity: 0.8; }
+
+.token:disabled:hover {
+  filter: brightness(110%); }
+
+.dissolveInTop {
+  animation: dissolveInTop 0.7s ease-in-out;
+  -webkit-animation: dissolveInTop 0.7s ease-in-out; }
+
+@keyframes dissolveInTop {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 50px, 0); }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0); } }
+
+@-webkit-keyframes dissolveInTop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100px, 0); }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0); } }
+
 .red {
   background: radial-gradient(ellipse farthest-corner at right bottom, #ff0000 0%, #cc0000 8%, #990000 30%, #800000 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFACAC 8%, #D46464 25%, #5d1f1f 62.5%, #5d1f1f 100%); }
 
@@ -57,3 +87,9 @@
 
 .yellow {
   background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%); }
+
+.violet {
+  background: radial-gradient(ellipse farthest-corner at right bottom, #fae9fe 0%, #E8C1FF 10%, #C79BFF 20%, #aa7efc 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #F7D9FF 0%, #E8C1FF 8%, #C79BFF 35%, #AF85FF 62.5%, #9F7BFF 100%); }
+
+.dark-grey {
+  background: radial-gradient(ellipse farthest-corner at right bottom, #f2f2f2 0%, #e6e6e6 8%, #d9d9d9 30%, #cccccc 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #f2f2f2 8%, #e6e6e6 25%, #808080 62.5%, #999999 100%); }

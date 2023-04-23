@@ -1,7 +1,7 @@
 .game-div {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   background-image: radial-gradient(circle at bottom, #23b958, #178d40, #05350e);
   width: 100%;
@@ -11,33 +11,66 @@
 
 .cards-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
-  gap: 5rem; }
+  margin-top: 2rem;
+  margin-right: -4.5rem;
+  gap: 3rem; }
+
+@media (min-width: 768px) {
+  .cards-container {
+    margin-right: -5.5rem; } }
+
+@media (min-width: 966px) {
+  .cards-container {
+    margin-right: -6.5rem; } }
 
 .cards-container-inner {
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  position: relative; }
 
-.info-container {
+.score-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%; }
-
-.score-box {
-  background-color: rgba(255, 255, 255, 0.3);
   color: white;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+  max-width: 1.5rem;
   font-weight: 400;
   text-align: center;
   text-shadow: #178d40 -1px -1px;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); }
+  animation: fade 10s ease forwards; }
+
+@keyframes fade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 
 @media (max-width: 767px) {
   .cards-container-inner {
     justify-content: center; } }
+
+.total-bet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem; }
+
+.deal-button {
+  cursor: pointer;
+  border: none;
+  color: white;
+  margin-left: 10px;
+  margin-top: 1rem;
+  background: none;
+  width: 4rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  text-shadow: #178d40 -1px -1px; }

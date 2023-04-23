@@ -43,6 +43,7 @@ class BlackjackStore {
       () => this.playerHand.length,
       () => {
         this.playerTotal = this.calculateTotal(this.playerHand);
+        console.log(this.playerTotal, "calculate method");
         this.playerHasBlackjack = this.checkForBlackjack(this.playerHand);
       }
     );
@@ -60,7 +61,8 @@ class BlackjackStore {
       () => this.gameState,
       (newGameState) => {
         this.updatePlayerBalance(newGameState);
-      })
+      }
+    );
   }
 
   setGameState(newState: GameState): void {
@@ -149,12 +151,19 @@ class BlackjackStore {
     if (this.gameState !== GameState.Playing) {
       return;
     }
-    const card = this.deck.pop();
-    if (card) {
-      this.playerHand.push(card);
-    }
     if (this.playerTotal > 21) {
       this.gameState = GameState.Lose;
+      console.log(
+        this.playerTotal,
+        "PLAYER TOTAL is more than 21, stop taking cards",
+        this.gameState
+      );
+      return;
+    }
+    const card = this.deck.pop();
+    if (card) {
+      console.log("pushing cards to player", this.playerTotal);
+      this.playerHand.push(card);
     }
   }
 
@@ -210,13 +219,11 @@ class BlackjackStore {
   // method to place a bet
   placeBet(amount: number) {
     if (this.gameState === GameState.Betting) {
-      if (amount <= 0 || amount > this.playerBalance) {
-        throw new Error("Insufficient balance.");
-      }
-      this.betAmount = amount;
-      this.gameState = GameState.Dealing;
+      const newBetAmount = this.betAmount + amount;
+      this.betAmount = newBetAmount;
     }
   }
+
   // method to reset the game state and clear the hands and totals
   resetGame() {
     this.deck = [];
@@ -228,6 +235,7 @@ class BlackjackStore {
     this.gameState = GameState.Idle;
     this.dealerHasBlackjack = false;
     this.playerHasBlackjack = false;
+    this.shuffleDeck();
   }
 }
 

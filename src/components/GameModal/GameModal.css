@@ -1,0 +1,33 @@
+.loader-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* opacity: 0.8; */
+  transition: opacity 0.3s ease-in-out;
+  background: radial-gradient(ellipse at center, rgba(68, 53, 1, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%); }
+
+.game-status {
+  background: linear-gradient(to bottom, #cfc09f 22%, #c6b48e 26%, #cfc09f 27%, #ffecb3 40%, #554016 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 6rem;
+  margin: 0;
+  font-weight: 500; }
+
+.game-status:after {
+  background: none;
+  content: attr(data-heading);
+  left: 0;
+  top: 0;
+  z-index: -1;
+  position: absolute;
+  text-shadow: -1px 0 1px #c6bb9f, 0 1px 1px #c6bb9f, 5px 5px 10px rgba(0, 0, 0, 0.4), -5px -5px 10px rgba(0, 0, 0, 0.4); }
