@@ -12,7 +12,7 @@ function StartingPage() {
   };
 
   return (
-    <div className="content-container-start">
+    <div className="content-container-start" data-testid="starting-page">
       <div className="logo-container">
         <img src={logo} alt="game-logo" className="logo" />
         <img

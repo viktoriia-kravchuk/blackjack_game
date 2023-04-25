@@ -11,19 +11,22 @@ const GameTable = () => {
   const playersHand = blackjackStore.playerHand;
   const dealersHand = blackjackStore.dealerHand;
   const gameState = blackjackStore.gameState;
+
+  
   return (
     <div className={styles["game-div"]}>
       <div className={styles["cards-container"]}>
         <div className={styles["cards-container-inner"]}>
           {dealersHand.map((card, i) => {
             const filename =
-              gameState === GameState.Playing && i === 1
+              gameState === GameState.Playing && i>0
                 ? "card-back"
                 : `${(card.rank + card.suit[0]).toUpperCase()}`;
+                const delay = i * 500;
 
             return (
               <div key={filename}>
-                <CardImage fileName={filename} />
+                <CardImage fileName={filename} delay={delay}/>
               </div>
             );
           })}
@@ -34,9 +37,10 @@ const GameTable = () => {
         <div className={styles["cards-container-inner"]}>
           {playersHand.map((card, i) => {
             const filename = `${(card.rank + card.suit[0]).toUpperCase()}`;
+            const delay = i<2 ? (i) * 500 : 300;
             return (
               <div key={filename}>
-                <CardImage fileName={filename} />
+                <CardImage fileName={filename} delay={delay}/>
               </div>
             );
           })}

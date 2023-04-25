@@ -4,19 +4,11 @@ import Button from "../UI/Button";
 import { GameState } from "../../types";
 import "./ActionButtons.css";
 
-interface ButtonProps {
-  style?: React.CSSProperties & {
-    '--item-total'?: number;
-    '--item-count'?: number;
-  };
-}
-
-const ActionButtons = ({style} : ButtonProps) => {
+const ActionButtons = () => {
   const buttonsAreDisabled: boolean =
     blackjackStore.gameState !== GameState.Playing;
 
   const buttonHitIsDisabled: boolean = blackjackStore.playerTotal > 21;
-
 
   const handleHit = () => {
     blackjackStore.hit();
@@ -30,10 +22,19 @@ const ActionButtons = ({style} : ButtonProps) => {
     blackjackStore.resetGame();
   };
 
+  const handleSurrender = () => {
+    blackjackStore.setGameState(GameState.Surrender);;
+  };
+
   return (
     <div className="buttons-wrapper">
       {!buttonsAreDisabled && (
         <>
+          <Button
+            label="SURRENDER"
+            onClick={handleSurrender}
+            className="btn btn-black"
+          />
           {!buttonHitIsDisabled && (
             <Button
               label="HIT"
@@ -42,24 +43,16 @@ const ActionButtons = ({style} : ButtonProps) => {
               disabled={buttonsAreDisabled}
             />
           )}
-
-            <Button
-              label="STAND"
-              onClick={handleStand}
-              className="btn btn-red"
-              disabled={buttonsAreDisabled}
-            />
-          
           <Button
-            label="SURRENDER"
-            onClick={handleReset}
-            className="btn btn-black"
+            label="STAND"
+            onClick={handleStand}
+            className="btn btn-red"
+            disabled={buttonsAreDisabled}
           />
         </>
       )}
 
       <Button label="RESET" onClick={handleReset} className="btn btn-black" />
-
     </div>
   );
 };
