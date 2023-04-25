@@ -43,7 +43,7 @@ class BlackjackStore {
       () => this.playerHand.length,
       () => {
         this.playerTotal = this.calculateTotal(this.playerHand);
-        console.log(this.playerTotal, "calculate method");
+        // console.log(this.playerTotal, "calculate method");
         this.playerHasBlackjack = this.checkForBlackjack(this.playerHand);
       }
     );
@@ -66,7 +66,9 @@ class BlackjackStore {
   }
 
   setGameState(newState: GameState): void {
-    this.gameState = newState;
+    action(() => {
+      this.gameState = newState;
+    })();
   }
 
   setNumberOfDecks(number: numberOfDecks): void {
@@ -153,17 +155,13 @@ class BlackjackStore {
     }
     if (this.playerTotal > 21) {
       this.gameState = GameState.Lose;
-      console.log(
-        this.playerTotal,
-        "PLAYER TOTAL is more than 21, stop taking cards",
-        this.gameState
-      );
       return;
     }
     const card = this.deck.pop();
     if (card) {
-      console.log("pushing cards to player", this.playerTotal);
-      this.playerHand.push(card);
+      action(() => {
+        this.playerHand.push(card);
+      })();
     }
   }
 
@@ -180,7 +178,9 @@ class BlackjackStore {
     while (this.computedDealerTotal < 17) {
       const card = this.deck.pop();
       if (card) {
-        this.dealerHand.push(card);
+        action(() => {
+          this.dealerHand.push(card);
+        })();
       }
     }
     // Determine winner
@@ -212,6 +212,8 @@ class BlackjackStore {
       this.playerBalance -= this.betAmount;
     } else if (gameOutcome === GameState.Blackjack) {
       this.playerBalance += this.betAmount * 1.5;
+    } else if (gameOutcome === GameState.Surrender) {
+      this.playerBalance -= this.betAmount / 2;
     }
     return;
   }
@@ -240,4 +242,5 @@ class BlackjackStore {
 }
 
 const blackjackStore = new BlackjackStore();
-export default blackjackStore;
+
+export { BlackjackStore, blackjackStore as default };

@@ -7,7 +7,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  /* opacity: 0.8; */
   transition: opacity 0.3s ease-in-out;
   background: radial-gradient(ellipse at center, rgba(68, 53, 1, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%); }
 
@@ -15,6 +14,7 @@
   background: linear-gradient(to bottom, #cfc09f 22%, #c6b48e 26%, #cfc09f 27%, #ffecb3 40%, #554016 85%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-align: center;
   color: #fff;
   font-family: 'Playfair Display', serif;
   position: relative;
@@ -31,3 +31,7 @@
   z-index: -1;
   position: absolute;
   text-shadow: -1px 0 1px #c6bb9f, 0 1px 1px #c6bb9f, 5px 5px 10px rgba(0, 0, 0, 0.4), -5px -5px 10px rgba(0, 0, 0, 0.4); }
+
+@media (max-width: 767px) {
+  .game-status {
+    font-size: 4rem; } }

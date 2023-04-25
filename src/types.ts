@@ -19,6 +19,7 @@ export enum GameState {
   Lose = "lose",
   Draw = "draw",
   Blackjack = "blackjack",
+  Surrender = "surrender",
 }
 
 export interface BettingTokenProps {

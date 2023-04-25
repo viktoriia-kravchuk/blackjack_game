@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import blackjackStore from "../../stores/GameStore";
 import { GameState } from "../../types";
@@ -12,7 +12,7 @@ const GameModal = observer(() => {
     const gameModalTimeout = setTimeout(() => {
       setShowModal(false);
       setModalText("");
-    }, 2500);
+    }, 2000);
 
     return () => {
       clearTimeout(gameModalTimeout);
@@ -21,15 +21,22 @@ const GameModal = observer(() => {
 
   useEffect(() => {
     const newGameState = blackjackStore.getGameState;
-    if (
+    if (newGameState === GameState.Betting) {
+      setShowModal(true);
+      setModalText(getModalText(newGameState));
+    } else if (
       newGameState === GameState.Win ||
       newGameState === GameState.Lose ||
       newGameState === GameState.Draw ||
-      newGameState === GameState.Betting ||
-      newGameState === GameState.Blackjack
+      newGameState === GameState.Blackjack ||
+      newGameState === GameState.Surrender
     ) {
-      setShowModal(true);
-      setModalText(getModalText(newGameState));
+      const delay = blackjackStore.dealerHand.length * 800;
+      const showModalTimeout = setTimeout(() => {
+        setShowModal(true);
+        setModalText(getModalText(newGameState));
+      }, delay);
+      return () => clearTimeout(showModalTimeout);
     }
   }, [blackjackStore.gameState]);
 
@@ -45,6 +52,8 @@ const GameModal = observer(() => {
         return "Place a bet!";
       case GameState.Blackjack:
         return "Blackjack!";
+      case GameState.Surrender:
+        return "You Surrendered!";
       default:
         return "";
     }
