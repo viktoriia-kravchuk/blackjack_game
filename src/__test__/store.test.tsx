@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
-import { BlackjackStore } from "../src/stores/GameStore";
-import { GameState } from "../src/types";
+import { BlackjackStore } from "../stores/GameStore";
+import { GameState } from "../types";
 
 describe("BlackjackStore", () => {
   let store: BlackjackStore;

@@ -11,10 +11,37 @@
   align-items: center;
   flex-direction: column; }
 
+.game-table {
+  opacity: 0;
+  transform: scale(0.2); }
+
+.game-table-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 1000ms; }
+
 .action-container {
   flex: 5;
   flex-direction: row;
   width: 100%; }
+
+.game-table-enter {
+  opacity: 0;
+  transform: translateY(-100%); }
+
+.game-table-enter-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 1000ms ease-in-out, transform 1000ms ease-in-out; }
+
+.game-table-exit {
+  opacity: 1;
+  transform: translateY(0%); }
+
+.game-table-exit-active {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 1000ms ease-in-out, transform 1000ms ease-in-out; }
 
 @media screen and (max-width: 600px) {
   .main-container {

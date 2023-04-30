@@ -210,9 +210,11 @@ class BlackjackStore {
       this.playerBalance += this.betAmount;
     } else if (gameOutcome === GameState.Lose) {
       this.playerBalance -= this.betAmount;
-    } else if (gameOutcome === GameState.Blackjack) {
+    } else if (gameOutcome === GameState.Blackjack && this.playerHasBlackjack) {
       this.playerBalance += this.betAmount * 1.5;
-    } else if (gameOutcome === GameState.Surrender) {
+    } else if (gameOutcome === GameState.Blackjack && this.dealerHasBlackjack) {
+      this.playerBalance -= this.betAmount;
+    }else if (gameOutcome === GameState.Surrender) {
       this.playerBalance -= this.betAmount / 2;
     }
     return;

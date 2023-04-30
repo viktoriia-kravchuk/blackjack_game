@@ -22,8 +22,12 @@ const GameModal = observer(() => {
   useEffect(() => {
     const newGameState = blackjackStore.getGameState;
     if (newGameState === GameState.Betting) {
-      setShowModal(true);
-      setModalText(getModalText(newGameState));
+      const delay = 1200;
+      const showModalTimeout = setTimeout(() => {
+        setShowModal(true);
+        setModalText(getModalText(newGameState));
+      }, delay);
+      return () => clearTimeout(showModalTimeout);
     } else if (
       newGameState === GameState.Win ||
       newGameState === GameState.Lose ||
@@ -31,7 +35,7 @@ const GameModal = observer(() => {
       newGameState === GameState.Blackjack ||
       newGameState === GameState.Surrender
     ) {
-      const delay = blackjackStore.dealerHand.length * 800;
+      const delay = blackjackStore.dealerHand.length * 1500;
       const showModalTimeout = setTimeout(() => {
         setShowModal(true);
         setModalText(getModalText(newGameState));
@@ -67,3 +71,5 @@ const GameModal = observer(() => {
 });
 
 export default GameModal;
+
+
