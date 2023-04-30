@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./CardImage.css";
 
-interface ImageProps {
-  fileName: string;
-  delay?: number;
-}
+const CardImage: React.FC<{ fileName: string; delay?: number }> = ({ fileName, delay = 0 }) => {
+  const [isVisible, setIsVisible] = useState(false);
 
-const CardImage: React.FC<ImageProps> = ({ fileName, delay}) => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, delay);
 
-  return (
-    <>
-      <div
-        className={`game-card card-${fileName}`}
-        style={{ animationDelay: `${delay}ms` }}
-      />
-    </>
-  );
+    return () => clearTimeout(timeout);
+  }, [delay]);
+
+  return <>{isVisible && <div className={`game-card card-${fileName}`} />}</>;
 };
 
 export default CardImage;

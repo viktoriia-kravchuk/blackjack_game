@@ -73,35 +73,25 @@ $value in $card-images {
     }
 }
 
-
 .game-card {
-    width: 90px;
-    height: 125px;
+    width: 70px;
+    height: 105px;
     border-radius: 0.7rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
     margin-left: -3rem;
-    opacity: 0;
     cursor: pointer;
-    // animation-delay: 2s;
-    // -webkit-animation-delay: 2s;
-    // animation-duration: 1.5s;
-    // -webkit-animation: fadeInTop 1.5s, flip 1.5s 1.5s;
-    // animation: fadeInTop 1.5s, flip 1.5s 1.5s;
-    -webkit-animation: fadeInTop 1.2s;
-    animation: fadeInTop 1.2s;
-    animation-fill-mode: forwards;
-    // transition: 0.4s;
+    -webkit-animation: fadeInTop 1.2s, flip 1.2s 1.2s;
+    animation: fadeInTop 1.2s, flip 1.2s 1.2s;
+    transition: 0.3s;
 
 }
-
 .game-card:not(:first-child) {
     margin-left: -5rem;
 }
 
-// .card-card-back {
-//     animation: fadeInTop 1.2s !important;
-//     animation-fill-mode: forwards;
-// }
+.card-card-back {
+    animation: fadeInTop 1.2s !important;
+}
 
 @keyframes fadeInTop {
     from {
@@ -111,31 +101,31 @@ $value in $card-images {
     }
 
     to {
-        // background-image: url("../../assets/images/card-back.png");
+        background-image: url("../../assets/images/card-back.png");
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-// @-webkit-keyframes flip {
-//     from {
-//         transform: rotateY(-90deg);
-//     }
+@-webkit-keyframes flip {
+    from {
+        transform: rotateY(-90deg);
+    }
 
-//     to {
-//         transform: rotateY(0deg);
-//     }
-// }
+    to {
+        transform: rotateY(0deg);
+    }
+}
 
-// @keyframes flip {
-//     from {
-//         transform: rotateY(-90deg);
-//     }
+@keyframes flip {
+    from {
+        transform: rotateY(-90deg);
+    }
 
-//     to {
-//         transform: rotateY(0deg);
-//     }
-// }
+    to {
+        transform: rotateY(0deg);
+    }
+}
 
 .game-card:hover {
     transform: translateY(-1rem);
@@ -165,3 +155,4 @@ $value in $card-images {
         margin-left: -5rem;
     }
 }
+
