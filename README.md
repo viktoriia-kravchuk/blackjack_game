@@ -29,8 +29,9 @@ The following features are implemented in the application:
 
 ## Example
 
-<video src="./src/assets/win.mp4" controls>
-  Your browser does not support the video tag.
+![name](./src/assets/win.mp4)
+
+<video src="./src/assets/win.mp4" controls="controls" style="max-width: 730px;">
 </video>
 
 ## Project Structure
