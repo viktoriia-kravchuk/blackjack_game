@@ -33,7 +33,7 @@ jobs:
         run: CI=false npm run build
 
       - name: Publish to GitHub Pages
-        uses: bitovi/github-actions-react-to-ghp@v1.2.0
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          build_command: CI=false npm run build
-          path: build
+          branch: gh-pages
+          folder: build
