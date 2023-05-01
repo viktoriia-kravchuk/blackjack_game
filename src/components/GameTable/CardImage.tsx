@@ -12,7 +12,7 @@ const CardImage: React.FC<{ fileName: string; delay?: number }> = ({ fileName, d
     return () => clearTimeout(timeout);
   }, [delay]);
 
-  return <>{isVisible && <div className={`game-card card-${fileName}`} />}</>;
+  return <>{isVisible && <div className={`game-card card-${fileName}`} data-testid="game-card"/>}</>;
 };
 
 export default CardImage;

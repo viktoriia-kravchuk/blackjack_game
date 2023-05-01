@@ -12,12 +12,14 @@ const getCardFilename = (card: Card, gameState: GameState, index: number, hand: 
   }
   return `${(card.rank + card.suit[0]).toUpperCase()}`;
 };
-
-const getCardDelay = (index: number) => {
+const getCardDelay = (index: number, hand: string) => {
   if (index < 2) {
-    return index * 800;
+    return index*400;
+  } else if (hand === "dealer" && index > 1) {
+    return index*800;
+  } else if (hand === "player" && index > 2) {
+    return 500;
   }
-  return 600;
 };
 
 const GameTable = () => {
@@ -36,7 +38,7 @@ const GameTable = () => {
         <div className={styles["cards-container-inner"]}>
           {dealerHand.map((card, i) => {
             const filename = getCardFilename(card, gameState, i, "dealer");
-            const delay = getCardDelay(i);
+            const delay = getCardDelay(i, "dealer");
 
             return (
               <div key={filename}>
@@ -51,7 +53,7 @@ const GameTable = () => {
         <div className={styles["cards-container-inner"]}>
           {playerHand.map((card, i) => {
             const filename = getCardFilename(card, gameState, i, "player");
-            const delay = getCardDelay(i);
+            const delay = getCardDelay(i, "player");
 
             return (
               <div key={filename}>

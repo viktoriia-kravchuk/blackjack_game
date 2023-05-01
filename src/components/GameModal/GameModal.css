@@ -7,6 +7,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  cursor: none;
   transition: opacity 0.3s ease-in-out;
   background: radial-gradient(ellipse at center, rgba(68, 53, 1, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%); }
 

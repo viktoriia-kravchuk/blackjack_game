@@ -43,7 +43,6 @@ class BlackjackStore {
       () => this.playerHand.length,
       () => {
         this.playerTotal = this.calculateTotal(this.playerHand);
-        // console.log(this.playerTotal, "calculate method");
         this.playerHasBlackjack = this.checkForBlackjack(this.playerHand);
       }
     );
