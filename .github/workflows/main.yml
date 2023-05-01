@@ -35,4 +35,5 @@ jobs:
       - name: Publish to GitHub Pages
         uses: bitovi/github-actions-react-to-ghp@v1.2.0
         with:
+          build_command: CI=false npm run build
           path: build
