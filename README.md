@@ -29,6 +29,7 @@ The following features are implemented in the application:
 
 ## Example
 
+https://user-images.githubusercontent.com/56258743/235604972-5969ea6a-0c85-4706-b173-d9b1aff267fd.mp4
 
 ## Project Structure
 
