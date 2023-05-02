@@ -29,7 +29,10 @@ The following features are implemented in the application:
 
 ## Example
 
-https://user-images.githubusercontent.com/56258743/235604972-5969ea6a-0c85-4706-b173-d9b1aff267fd.mp4
+
+https://user-images.githubusercontent.com/56258743/235710724-18028daa-ce7c-4874-8abc-e5ab844688c7.mp4
+
+
 
 ## Project Structure
 
