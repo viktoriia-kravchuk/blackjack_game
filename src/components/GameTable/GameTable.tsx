@@ -46,7 +46,7 @@ const GameTable = () => {
               </div>
             );
           })}
-          <div className={styles["score-box"]}>
+          <div className={styles["score-box"]} key={Math.random()}>
             {dealerTotal > 0 ? dealerTotal : ""}
           </div>
         </div>
@@ -61,7 +61,7 @@ const GameTable = () => {
               </div>
             );
           })}
-          <div className={styles["score-box"]}>
+          <div className={styles["score-box"]} key={Math.random()}>
             {playerTotal > 0 ? playerTotal : ""}
           </div>
         </div>
