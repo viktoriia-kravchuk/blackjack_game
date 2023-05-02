@@ -9,10 +9,6 @@ describe("ActionButtons", () => {
   let store: BlackjackStore;
   beforeEach(() => {
     store = new BlackjackStore();
-    // store.shuffleDeck();
-    // store.setGameState(GameState.Betting);
-    // store.placeBet(10);
-
     jest.clearAllMocks();
   });
 

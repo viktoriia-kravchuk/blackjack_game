@@ -17,6 +17,8 @@ function App() {
 
   const gameState = blackjackStore.gameState;
 
+  // console.log(gameState);
+
   return (
     <div className="main-container">
       <CSSTransition

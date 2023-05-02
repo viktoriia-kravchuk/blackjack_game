@@ -44,6 +44,10 @@ class BlackjackStore {
       () => {
         this.playerTotal = this.calculateTotal(this.playerHand);
         this.playerHasBlackjack = this.checkForBlackjack(this.playerHand);
+        if (this.playerTotal > 21) {
+          console.log("reaction state change")
+          this.stand();
+        }
       }
     );
 
@@ -152,18 +156,23 @@ class BlackjackStore {
     if (this.gameState !== GameState.Playing) {
       return;
     }
-    if (this.playerTotal > 21) {
-      this.gameState = GameState.Lose;
+    if (this.computedPlayerTotal > 21) {
+      this.setGameState(GameState.Lose);
       return;
+    }else{
+      const card = this.deck.pop();
+      if (card) {
+        action(() => {
+          this.playerHand.push(card);
+        })();
+      }
     }
-    const card = this.deck.pop();
-    if (card) {
-      action(() => {
-        this.playerHand.push(card);
-      })();
-    }
+
   }
 
+  get computedPlayerTotal(): number {
+    return this.calculateTotal(this.playerHand);
+  }
   get computedDealerTotal(): number {
     return this.calculateTotal(this.dealerHand);
   }
@@ -183,8 +192,14 @@ class BlackjackStore {
       }
     }
     // Determine winner
-    if (this.computedDealerTotal > 21) {
-      this.gameState = GameState.Win; // dealer bust, player wins
+    if (this.computedDealerTotal > 21 || this.playerTotal > 21) {
+      if (this.computedDealerTotal > 21 && this.playerTotal > 21) {
+        this.gameState = GameState.Draw; // both dealer and player bust, it's a draw
+      } else if (this.computedDealerTotal > 21) {
+        this.gameState = GameState.Win; // dealer bust, player wins
+      } else {
+        this.gameState = GameState.Lose; // player bust, player loses
+      }
     } else if (this.playerTotal > this.computedDealerTotal) {
       this.gameState = GameState.Win; // player has higher hand value, player wins
     } else if (this.computedDealerTotal > this.playerTotal) {
