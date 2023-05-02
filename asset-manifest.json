@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/blackjack_game/static/css/main.e03cee58.css",
-    "main.js": "/blackjack_game/static/js/main.b8c18a21.js",
+    "main.js": "/blackjack_game/static/js/main.b540d20b.js",
     "static/js/787.cacf667e.chunk.js": "/blackjack_game/static/js/787.cacf667e.chunk.js",
     "static/media/card-back.png": "/blackjack_game/static/media/card-back.106950de78842b799b3f.png",
     "static/media/background.jpg": "/blackjack_game/static/media/background.168e085df9ab05e6acfc.jpg",
@@ -61,11 +61,11 @@
     "static/media/ACED.png": "/blackjack_game/static/media/ACED.f3b345b1733636b7cc1a.png",
     "index.html": "/blackjack_game/index.html",
     "main.e03cee58.css.map": "/blackjack_game/static/css/main.e03cee58.css.map",
-    "main.b8c18a21.js.map": "/blackjack_game/static/js/main.b8c18a21.js.map",
+    "main.b540d20b.js.map": "/blackjack_game/static/js/main.b540d20b.js.map",
     "787.cacf667e.chunk.js.map": "/blackjack_game/static/js/787.cacf667e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e03cee58.css",
-    "static/js/main.b8c18a21.js"
+    "static/js/main.b540d20b.js"
   ]
 }
