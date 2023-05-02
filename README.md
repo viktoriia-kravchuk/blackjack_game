@@ -29,10 +29,7 @@ The following features are implemented in the application:
 
 ## Example
 
-![name](./src/assets/win.mp4)
-
-<video src="./src/assets/win.mp4" controls="controls" style="max-width: 730px;">
-</video>
+https://user-images.githubusercontent.com/56258743/235604972-5969ea6a-0c85-4706-b173-d9b1aff267fd.mp4
 
 ## Project Structure
 
